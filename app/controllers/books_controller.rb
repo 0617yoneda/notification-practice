@@ -10,6 +10,8 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @book = Book.new
+    @q = Book.ransack(params[:q])
+    @search_books = @q.result(distinct: true)
   end
 
   def create
